@@ -18,13 +18,20 @@ class Player:
 	# Save result to file.
 	def saveResult(self):
 		text = {"player": {self.nick: int(self.result)}}
-		with open(self.nick + self.path, 'w') as f:
-			toml.dump(text, f)
+		try:
+			with open(self.nick + self.path, 'w') as f:
+				toml.dump(text, f)
+		except FileNotFoundError as err:
+			print(f'error: {err}')
+
 
 	def readResult(self):
-		with open(self.nick + self.path, 'r') as f:
-			text = toml.load(f)
-			print(text['player'][self.nick])
+		try:
+			with open(self.nick + self.path, 'r') as f:
+				text = toml.load(f)
+				print(text['player'][self.nick])
+		except FileNotFoundError as err:
+			print(f'error: {err}')
 
 
 class Game:
@@ -92,7 +99,8 @@ class Menu:
 def main():
 	menu = Menu()
 	game = Game()
-	player = Player("aaa")
+
+	player = Player("Player1")
 	player.result = "4"
 	player.saveResult()
 	player.readResult()
