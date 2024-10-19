@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from random import randint
+from colorama import Fore, Back, Style
 import toml
 
 YOUWON = True
@@ -7,9 +8,9 @@ YOULOSE = False
 NOTICE = """
 +--------------------------------------+
 |               WELCOME                |
-|   This is a number guessing game     |
-|    You have 3 chances to succeed     |
-|        Max score is 3 points         |
+|   This is a number guessing game.    |
+|    You have 3 chances to succeed.    |
+|        Max score is 3 points.        |
 |             GOOD LUCK!!!"            |
 +--------------------------------------+
 
@@ -75,7 +76,8 @@ class Menu:
 		pass
 
 	def printMenu(self):
-		print(NOTICE)
+		print(Fore.BLACK + Back.GREEN + NOTICE)
+		print(Style.RESET_ALL)
 
 # def main():
 	# menu = Menu()
