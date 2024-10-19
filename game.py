@@ -4,8 +4,16 @@ import toml
 
 YOUWON = True
 YOULOSE = False
-NOTICE = "This is a gessing number game\nYou have 3 hange to guess the number\n\
-Max score is 3 points\nGOOD LUCK!!!"
+NOTICE = """
++--------------------------------------+
+|               WELCOME                |
+|   This is a number guessing game     |
+|    You have 3 chances to succeed     |
+|        Max score is 3 points         |
+|             GOOD LUCK!!!"            |
++--------------------------------------+
+
+"""
 		
 class Player:
 	# Constructor.
@@ -67,10 +75,7 @@ class Menu:
 		pass
 
 	def printMenu(self):
-		print("*"*40)
-		print("         WELCOME")
 		print(NOTICE)
-		print("*"*40)
 
 # def main():
 	# menu = Menu()
@@ -99,11 +104,11 @@ class Menu:
 def main():
 	menu = Menu()
 	game = Game()
-
-	player = Player("Player1")
-	player.result = "4"
-	player.saveResult()
-	player.readResult()
+	menu.printMenu()
+	# player = Player("Player1")
+	# player.result = "4"
+	# player.saveResult()
+	# player.readResult()
 
 
 if __name__ == "__main__":
