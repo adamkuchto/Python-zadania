@@ -1,47 +1,8 @@
-#!/usr/bin/env python
 from random import randint
 from tools import ColorPrint
-import toml
 
 YOUWON = True
 YOULOSE = False
-NOTICE = """
-+--------------------------------------+
-|               WELCOME                |
-|   This is a number guessing game.    |
-|    You have 3 chances to succeed.    |
-|        Max score is 3 points.        |
-|             GOOD LUCK!!!"            |
-+--------------------------------------+
-
-"""
-		
-class Player:
-	# Constructor.
-	def __init__(self, nick) -> None:
-		# Player's nick.
-		self.nick = nick
-		self.result = 0  # Initialize result to 0 or any default value
-		self.path = ".toml"
-
-	# Save result to file.
-	def saveResult(self):
-		text = {"player": {self.nick: int(self.result)}}
-		try:
-			with open(self.nick + self.path, 'w') as f:
-				toml.dump(text, f)
-		except FileNotFoundError as err:
-			ColorPrint(ColorPrint.error, f'error: {err}')
-
-
-	def readResult(self):
-		try:
-			with open(self.nick + self.path, 'r') as f:
-				text = toml.load(f)
-				ColorPrint(ColorPrint.error, text['player'][self.nick])
-		except FileNotFoundError as err:
-			ColorPrint(ColorPrint.error, f'error: {err}')
-
 
 class Game:
 	def __init__(self) -> None:
@@ -67,49 +28,5 @@ class Game:
 	def checkNumers(self):
 		return YOUWON if self.goldNumber == self.playerNumber else YOULOSE
 
-class Menu:
-	def __init__(self) -> None:
-		pass
-
-	def checkPlayerScore(self):
-		pass
-
-	def printMenu(self):
-		ColorPrint(ColorPrint.info, NOTICE)
-
-def main():
-	menu = Menu()
-	game = Game()
-	menu.printMenu()
-	player = Player(input("Enter your nickname: "))
-	# sprawdz czy już grał
-	player.result = 3
-	game.getGoldNumber()
-	try:
-		while player.result:
-			player.result -= 1
-			game.getPlayerNumber()
-			if game.checkNumers():
-				ColorPrint(ColorPrint.error, "YOU WON")
-				break
-			else:
-				ColorPrint(ColorPrint.error, "WRONG")
-				continue
-	except:
-		pass
-	finally:
-		player.saveResult()
-		ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
-
-# def main():
-# 	menu = Menu()
-# 	game = Game()
-# 	menu.printMenu()
-# 	# player = Player("Player1")
-# 	# player.result = "4"
-# 	# player.saveResult()
-# 	# player.readResult()
 
 
-if __name__ == "__main__":
-	main()
