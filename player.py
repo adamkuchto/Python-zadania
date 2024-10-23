@@ -23,6 +23,6 @@ class Player:
 		try:
 			with open(self.nick + self.path, 'r') as f:
 				text = toml.load(f)
-				ColorPrint(ColorPrint.error, text['player'][self.nick])
+				return text['player'][self.nick]
 		except FileNotFoundError as err:
 			ColorPrint(ColorPrint.error, f'error: {err}')
