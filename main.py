@@ -9,6 +9,7 @@ def main():
 	menu = Menu()
 	game = Game()
 	menu.printMenu()
+	menu.mode()
 	player = Player(input("Enter your nickname: "))
 	 
 	score = player.readResult()
@@ -36,14 +37,15 @@ def main():
 		ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
 
 # def main():
-# 	# menu = Menu()
+# 	menu = Menu()
+# 	menu.printMenu()
+# 	menu.mode()
 # 	# game = Game()
-# 	# menu.printMenu()
-# 	player = Player("aaad")
+# 	# player = Player("aaad")
 # 	# player.result = "4"
 # 	# player.saveResult()
-# 	ile = player.readResult()
-# 	print (ile)
+# 	# ile = player.readResult()
+# 	# print (ile)
 
 
 if __name__ == "__main__":

@@ -10,6 +10,13 @@ NOTICE = """
 +--------------------------------------+
 
 """
+OPTIONS = """
++--------------------------------------+
+|1 - Player quess number               |
+|2 - Computer quess number             |
+|3 - Quit                              |
++--------------------------------------+
+"""
 
 class Menu:
 	def __init__(self) -> None:
@@ -17,3 +24,9 @@ class Menu:
 
 	def printMenu(self):
 		ColorPrint(ColorPrint.info, NOTICE)
+
+	def mode(self):
+		ColorPrint(ColorPrint.info, OPTIONS)
+		return int(input())
+		
+
