@@ -21,7 +21,8 @@ class Game:
 
 	def getPlayerNumber(self):
 		try:
-			self.playerNumber = int(input("Guess the nuber!!!\n\r"))
+			ColorPrint(ColorPrint.info, "Guess the nuber!!!\n\r")
+			self.playerNumber = int(input())
 		except ValueError:
 			ColorPrint(ColorPrint.error, "Please enter a valid number.")
 
