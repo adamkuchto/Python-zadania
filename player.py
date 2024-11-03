@@ -24,5 +24,9 @@ class Player:
 			with open(self.nick + self.path, 'r') as f:
 				text = toml.load(f)
 				return text['player'][self.nick]
-		except FileNotFoundError as err:
-			ColorPrint(ColorPrint.error, f'error: {err}')
+		except FileNotFoundError:
+			ColorPrint(ColorPrint.info, 'It is your first game. Welcome!')
+		except PermissionError:
+			ColorPrint(ColorPrint.error, 'You do not have permission to open this file!')
+		except ValueError:
+			ColorPrint(ColorPrint.error, 'Invalid data format!')
