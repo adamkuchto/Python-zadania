@@ -8,6 +8,7 @@ class Player:
 		self.nick = nick
 		self.result = 0  # Initialize result to 0 or any default value
 		self.path = ".toml"
+		self.score = 0
 
 	# Save result to file.
 	def saveResult(self):
@@ -30,3 +31,11 @@ class Player:
 			ColorPrint(ColorPrint.error, 'You do not have permission to open this file!')
 		except ValueError:
 			ColorPrint(ColorPrint.error, 'Invalid data format!')
+
+	def showResult(self):
+		self.score = self.readResult()
+		if self.score:
+			ColorPrint(ColorPrint.info, f"Your score: {self.score}")
+			self.result = 3 + self.score
+		else:
+			self.result = 3

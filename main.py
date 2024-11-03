@@ -11,14 +11,7 @@ def main():
 	menu.printMenu()
 	menu.mode()
 	player = Player(input("Enter your nickname: "))
-	 
-	score = player.readResult()
-	if score:
-		ColorPrint(ColorPrint.info, f"Your score: {score}")
-		player.result = 3 + score
-	else:
-		player.result = 3
-
+	player.showResult()
 	game.getGoldNumber()
 	try:
 		while player.result:
