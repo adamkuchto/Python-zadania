@@ -9,25 +9,11 @@ def main():
 	menu = Menu()
 	game = Game()
 	menu.printMenu()
-	menu.mode()
 	player = Player(input("Enter your nickname: "))
 	player.showResult()
-	game.getGoldNumber()
-	try:
-		while player.result:
-			game.getPlayerNumber()
-			if game.checkNumers():
-				ColorPrint(ColorPrint.error, "YOU WON")
-				break
-			else:
-				player.result -= 1
-				ColorPrint(ColorPrint.error, "WRONG")
-				continue
-	except:
-		pass
-	finally:
-		player.saveResult()
-		ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
+	game.playGame(player.result, menu.mode())
+	player.saveResult()
+	ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
 
 # def main():
 # 	menu = Menu()
