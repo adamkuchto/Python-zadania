@@ -1,3 +1,6 @@
+"""
+Main menu
+"""
 from tools import ColorPrint
 
 NOTICE = """
@@ -8,7 +11,6 @@ NOTICE = """
 |        Max score is 3 points.        |
 |             GOOD LUCK!!!"            |
 +--------------------------------------+
-
 """
 OPTIONS = """
 +--------------------------------------+
@@ -20,14 +22,26 @@ OPTIONS = """
 """
 
 class Menu:
-	def __init__(self) -> None:
-		pass
+    """
+    A class to represent a menu in the application.
+    """
+    def __init__(self) -> None:
+        """
+        Initializes an instance of the Menu class.
+        """
 
-	def printMenu(self):
-		ColorPrint(ColorPrint.info, NOTICE)
+    def printMenu(self):
+        """
+        Displays the menu to the user.
+        """
+        ColorPrint(ColorPrint.info, NOTICE)
 
-	def mode(self):
-		ColorPrint(ColorPrint.info, OPTIONS)
-		return int(input())
-		
-
+    def mode(self):
+        """
+        Displays mode options and gets the user's selection.
+        
+        Returns:
+            int: The mode selected by the user.
+        """
+        ColorPrint(ColorPrint.info, OPTIONS)
+        return int(input())
