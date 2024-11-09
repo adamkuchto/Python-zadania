@@ -1,5 +1,6 @@
 from random import randint
 from tools import ColorPrint
+import random
 
 YOUWON = True
 YOULOSE = False
@@ -40,18 +41,24 @@ class Game:
 		self.getRange()
 		if mode == 1:
 			self.getGoldNumber()
-		else:
+		elif mode == 2:
 			self.getPlayerNumber(text="Set")
+		elif mode == 3:
+			self.getGoldNumber()
+
+		playerTurn = random.choice([True, False])
 
 		while attempts:
-			if mode == 1:
+			if mode == 1 or (mode == 3 and playerTurn):
+				ColorPrint(ColorPrint.info, "Player turn")
 				self.getPlayerNumber()
 			else:
+				ColorPrint(ColorPrint.info, "Computer turn")
 				self.getGoldNumber()
-				print(f"TEST GOLD {self.goldNumber}")
+
 
 			if self.checkNumbers():
-				if mode == 1:
+				if mode == 1 or (mode == 3 and playerTurn):
 					ColorPrint(ColorPrint.success, "YOU WON")
 				else:
 					ColorPrint(ColorPrint.success, "COMPUTER WON")
@@ -59,6 +66,8 @@ class Game:
 			else:
 				attempts -= 1
 				ColorPrint(ColorPrint.error, "WRONG")
+				if mode == 3:
+					playerTurn = not playerTurn
 		else:
 			ColorPrint(ColorPrint.error, "GAME OVER")
 

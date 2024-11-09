@@ -14,7 +14,8 @@ OPTIONS = """
 +--------------------------------------+
 |1 - Player quess number               |
 |2 - Computer quess number             |
-|3 - Quit                              |
+|3 - Mixed game                        |
+|4 - Quit                              |
 +--------------------------------------+
 """
 
