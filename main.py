@@ -1,19 +1,25 @@
 #!/usr/bin/env python
 
+"""
+Main program file.
+"""
 from player import Player
 from menu import Menu
 from tools import ColorPrint
 from game import Game
 
 def main():
-	menu = Menu()
-	game = Game()
-	menu.printMenu()
-	player = Player(input("Enter your nickname: "))
-	player.showResult()
-	game.playGame(player.result, menu.mode())
-	player.saveResult()
-	ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
+    """
+    Main function.
+    """
+    menu = Menu()
+    game = Game()
+    menu.printMenu()
+    player = Player(input("Enter your nickname: "))
+    player.showResult()
+    game.playGame(player.result, menu.mode())
+    player.saveResult()
+    ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
 
 # def main():
 # 	menu = Menu()
@@ -28,4 +34,4 @@ def main():
 
 
 if __name__ == "__main__":
-	main()
+    main()
