@@ -18,19 +18,30 @@ class Game:
         self.goldNumber = None
         self.playerNumber = None
         self.range = None
+        self.level = None
+
+    def getLevel(self):
+        """
+        Prompts the user to set the game level.
+        """
+        self.level = int(input("Set the level (1 - 3): "))
 
     def getRange(self):
         """
         Prompts the user to set the range for the goldNumber.
         Ensures the range is between 0 and 100.
         """
+        rangeTab = ['0 - 100', '0 - 1000', '0 - 10000']
+        levelTab = [100, 1000, 10000]
         try:
-            range_value = int(input("Set the range (0-100): "))
-            if 0 <= range_value <= 100:
+            range_value = int(input(f"Set the range ({rangeTab[self.level - 1]}): "))
+            if 0 <= range_value <= levelTab[self.level - 1]:
                 self.range = range_value
             else:
-                ColorPrint(ColorPrint.error, "Wrong number,\
-                    please enter a number between 0 and 100.")
+                ColorPrint(ColorPrint.error, (
+                    f"Wrong number, please enter a number between 0 and "
+                    f"{levelTab[self.level - 1]}."
+                ))
         except ValueError:
             ColorPrint(ColorPrint.error, "Please enter a valid number.")
 
@@ -84,6 +95,7 @@ class Game:
             Mode 2: Player sets the number, computer guesses.
             Mode 3: Alternating turns between player and computer.
         """
+        self.getLevel()
         self.getRange()
         if mode == 1:
             self.getGoldNumber()
