@@ -16,8 +16,11 @@ def main():
     game = Game()
     menu.printMenu()
     player = Player(input("Enter your nickname: "))
+    options = menu.mode()
+    if options == 2:
+        player.nick = 'Computer'
     player.showResult()
-    game.playGame(player.result, menu.mode())
+    game.playGame(player.result, options)
     player.saveResult()
     ColorPrint(ColorPrint.info, f"Result saved for player {player.nick} with score {player.result}")
 
