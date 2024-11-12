@@ -1,6 +1,7 @@
 """
 This file contains all function about the game logic.
 """
+import sys
 from random import randint, choice
 from tools import ColorPrint
 
@@ -94,7 +95,10 @@ class Game:
             Mode 1: Player guesses the number.
             Mode 2: Player sets the number, computer guesses.
             Mode 3: Alternating turns between player and computer.
+            Mode 4: Quit the game.
         """
+        if mode == 4:
+            sys.exit()
         self.getLevel()
         self.getRange()
         if mode == 1:
