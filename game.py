@@ -87,12 +87,37 @@ class Game:
         """
         Runs multiplayer game.
         """
+        again = "Y"
         players = {}
-        self.howManyPlayers = int(input("Enter numbers of players: "))
+        try:
+            self.howManyPlayers = int(input("Enter numbers of players: "))
+        except ValueError:
+            ColorPrint(ColorPrint.error, f"{ValueError}")
 
         for i in range(1, self.howManyPlayers + 1):
-            nick = input(f"Enter nickname of {i} player: ")
-            players[nick] = 0
+            try:
+                nick = input(f"Enter nickname of {i} player: ")
+                players[nick] = 0
+            except:
+                ColorPrint(ColorPrint.error, "Wrong value")
+
+        self.getLevel()
+        self.getRange()
+
+        while again == "Y":
+            self.getGoldNumber()
+            print(f"DEBUG {self.goldNumber}")
+            for p in players:
+                try:
+                    num = int(input(f"{p} guess the number: "))
+                except ValueError:
+                    ColorPrint(ColorPrint.error, "Bad value")
+                    continue
+                if num == self.goldNumber:
+                    players[p] += 1 
+            ColorPrint(ColorPrint.info, f" Score {players}")
+            again = input("Once again? (Y/N)").upper()
+            
 
 
     def playGame(self, attempts, mode=1):
@@ -113,6 +138,7 @@ class Game:
         """
         if mode == 4:
             self.multiplayer()
+            return
         if mode == 5:
             sys.exit()
         self.getLevel()
