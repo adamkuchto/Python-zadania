@@ -3,9 +3,10 @@
 """
 Main program file.
 """
+import sys
 from player import Player
 from menu import Menu
-from tools import ColorPrint
+from tools import ColorPrint, switcher
 from game import Game
 
 def main():
@@ -15,10 +16,22 @@ def main():
     menu = Menu()
     game = Game()
     menu.printMenu()
-    player = Player(input("Enter your nickname: "))
-    options = menu.mode()
-    if options == 2:
-        player.nick = 'Computer'
+    options = switcher(menu.mode())
+    print(options)
+    if options == "Player quess number":
+        player = Player(input("Enter your nickname: "))
+    elif options == "Computer quess number":
+        player = Player("Computer")
+    elif options == "Mixed game":
+        player = Player(input("Enter your nickname: "))
+    elif options == "Multiplayer":
+        player = Player(input("Enter your nickname: "))
+        game.multiplayer()
+    elif options == "Quit":
+        sys.exit()
+    else:
+        return
+
     player.showResult()
     game.playGame(player.result, options)
     player.saveResult()
