@@ -1,7 +1,6 @@
 """
 This file contains all function about the game logic.
 """
-import sys
 from random import randint, choice
 from tools import ColorPrint
 
@@ -98,7 +97,7 @@ class Game:
             try:
                 nick = input(f"Enter nickname of {i} player: ")
                 players[nick] = 0
-            except:
+            except ValueError:
                 ColorPrint(ColorPrint.error, "Wrong value")
 
         self.getLevel()
@@ -136,24 +135,19 @@ class Game:
             Mode 4: Multiplayer game mode.
             Mode 5: Quit the game.
         """
-        if mode == 4:
-            self.multiplayer()
-            return
-        if mode == 5:
-            sys.exit()
         self.getLevel()
         self.getRange()
-        if mode == 1:
+        if mode == "Player quess number":
             self.getGoldNumber()
-        elif mode == 2:
+        elif mode == "Computer quess number":
             self.getPlayerNumber(text="Set")
-        elif mode == 3:
+        elif mode == "Mixed game":
             self.getGoldNumber()
 
         playerTurn = choice([True, False])
 
         while attempts:
-            if mode == 1 or (mode == 3 and playerTurn):
+            if mode == "Player quess number" or (mode == "Mixed game" and playerTurn):
                 ColorPrint(ColorPrint.info, "Player turn")
                 self.getPlayerNumber()
             else:
@@ -161,7 +155,7 @@ class Game:
                 self.getGoldNumber()
 
             if self.checkNumbers():
-                if mode == 1 or (mode == 3 and playerTurn):
+                if mode == "Player quess number" or (mode == "Mixed game" and playerTurn):
                     ColorPrint(ColorPrint.success, "YOU WON")
                 else:
                     ColorPrint(ColorPrint.success, "COMPUTER WON")
@@ -169,7 +163,7 @@ class Game:
             else:
                 attempts -= 1
                 ColorPrint(ColorPrint.error, "WRONG")
-                if mode == 3:
+                if mode == "Mixed game":
                     playerTurn = not playerTurn
 
         ColorPrint(ColorPrint.error, "GAME OVER")
