@@ -20,6 +20,7 @@ class Game:
         self.playerNumber = None
         self.range = None
         self.level = None
+        self.howManyPlayers = None
 
     def getLevel(self):
         """
@@ -82,6 +83,18 @@ class Game:
         """
         return YOUWON if self.goldNumber == self.playerNumber else YOULOSE
 
+    def multiplayer(self):
+        """
+        Runs multiplayer game.
+        """
+        players = {}
+        self.howManyPlayers = int(input("Enter numbers of players: "))
+
+        for i in range(1, self.howManyPlayers + 1):
+            nick = input(f"Enter nickname of {i} player: ")
+            players[nick] = 0
+
+
     def playGame(self, attempts, mode=1):
         """
         Runs the main game loop with the specified number of attempts and mode.
@@ -95,9 +108,12 @@ class Game:
             Mode 1: Player guesses the number.
             Mode 2: Player sets the number, computer guesses.
             Mode 3: Alternating turns between player and computer.
-            Mode 4: Quit the game.
+            Mode 4: Multiplayer game mode.
+            Mode 5: Quit the game.
         """
         if mode == 4:
+            self.multiplayer()
+        if mode == 5:
             sys.exit()
         self.getLevel()
         self.getRange()
